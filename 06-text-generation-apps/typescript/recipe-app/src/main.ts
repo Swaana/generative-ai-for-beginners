@@ -1,17 +1,16 @@
 import { OpenAIClient, AzureKeyCredential, ChatRequestMessage } from "@azure/openai";
 import * as dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ path: '../../../.env'});
 
 const endpoint = process.env.AZURE_OPENAI_ENDPOINT || '';
 const azureApiKey = process.env.AZURE_OPENAI_API_KEY || '';
+const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT || '';
 
 export async function main() {
     console.log("== Recipe Recommendation App ==");
 
     const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
-    const deploymentName = 'deployment-name-completion';
-    //const deploymentName = '<include-your-deployment-name-here>';
 
     console.log("Number of recipes: (for example: 5): ");
     const numRecipes = "2";
